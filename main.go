@@ -73,8 +73,10 @@ func outputTest(w io.Writer, test *Test) {
 		} else {
 			switch test.Status {
 			case "FAIL":
-				fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
-					now, testName, escapeLines(test.Details))
+				if strings.Contains(testName, "/") { //output test only if it is not a suitename without testname
+					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
+						now, testName, escapeLines(test.Details))
+				}
 			case "PASS":
 				// ignore
 			default:
