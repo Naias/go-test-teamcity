@@ -77,7 +77,7 @@ func outputTest(w io.Writer, test *Test) {
 					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
 						now, testName, escapeLines(test.Details))
 					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
-						now, "CatsTest", escapeLines([]{"Cats rule the world, my lord!"}))
+						now, "CatsTest", escapeLines([]string{"Cats rule the world, my lord!"}))
 				}
 			case "PASS":
 				// ignore
