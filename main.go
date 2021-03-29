@@ -136,9 +136,7 @@ func processReader(r *bufio.Reader, w io.Writer) {
 		}
 	}
 	if test != nil {
-//		if strings.Contains(test.Name, "/") { //output test only if it is not a suitename without testname
-			outputTest(w, test)
-//		}
+		outputTest(w, test)
 		delete(tests, test.Name)
 	}
 	for _, t := range tests {
