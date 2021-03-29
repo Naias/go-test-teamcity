@@ -76,6 +76,8 @@ func outputTest(w io.Writer, test *Test) {
 				if strings.Contains(testName, "/") { //output test only if it is not a suitename without testname
 					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
 						now, testName, escapeLines(test.Details))
+					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
+						now, "CatsTest", escapeLines([]{"Cats rule the world, my lord!"}))
 				}
 			case "PASS":
 				// ignore
