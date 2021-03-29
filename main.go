@@ -76,9 +76,6 @@ func outputTest(w io.Writer, test *Test) {
 				if strings.Contains(testName, "/") { //output test only if it is not a suitename without testname
 					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
 						now, testName, escapeLines(test.Details))
-					catsText := []string{"Cats rule the world, my lord!"}
-					fmt.Fprintf(w, "##teamcity[testFailed timestamp='%s' name='%s' details='%s']\n",
-						now, "CatsTest", escapeLines(catsText))
 				}
 			case "PASS":
 				// ignore
@@ -139,9 +136,9 @@ func processReader(r *bufio.Reader, w io.Writer) {
 		}
 	}
 	if test != nil {
-		if strings.Contains(test.Name, "/") { //output test only if it is not a suitename without testname
+//		if strings.Contains(test.Name, "/") { //output test only if it is not a suitename without testname
 			outputTest(w, test)
-		}
+//		}
 		delete(tests, test.Name)
 	}
 	for _, t := range tests {
